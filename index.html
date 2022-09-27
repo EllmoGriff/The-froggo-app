@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/pretty.css" />
+    <title>Weather app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/737bf8bbc7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container-sm">
+      <header>
+        <h1>ENTER CITY</h1>
+        <h2>
+          <span class="date" id="current-date">Thursday 1st Sep</span>
+          <span class="time" id="current-time">20:08PM</span>
+        </h2>
+      </header>
+      
+      <section>
+        <div class="moon">
+          <i class="fa-solid fa-cloud-moon"></i>
+        </div>
+        <div class="temp" id="current-temp">0°</div>
+        <div class="c">
+          <a class = "tempC" href="#" >°C</a
+          ><span class="f"><a class = "tempF" href="#" >/°F</a></span>
+        </div>
+        <div class="mood"></div>
+        <div class="container text-center deets">
+          <div class="row">
+            <div class="col-sm-4">
+              <span class="feel">Real feel </span><span id="degree">°</span>
+            </div>
+            <div class="col-sm-4">
+              <span class="wind">Wind </span><span id="mph"> mph</span>
+            </div>
+            <div class="col-sm-4">
+              <span class="humid">Humidity </span><span id="percent">%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-sm-4 day">Fri</div>
+            <div class="col-sm-4 icon1"><i class="fa-solid fa-cloud"></i></div>
+            <div class="col-sm-4 sTemp">23°</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 day">Sat</div>
+            <div class="col-sm-4 icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="col-sm-4 sTemp">22°</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 day">Sun</div>
+            <div class="col-sm-4 icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="col-sm-4 sTemp">22°</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 day">Mon</div>
+            <div class="col-sm-4 icon">
+              <i class="fa-solid fa-cloud-bolt"></i>
+            </div>
+            <div class="col-sm-4 sTemp">21°</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 day">Tue</div>
+            <div class="col-sm-4 icon">
+              <i class="fa-solid fa-cloud-bolt"></i>
+            </div>
+            <div class="col-sm-4 sTemp">21°</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 day">Wed</div>
+            <div class="col-sm-4 icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="col-sm-4 sTemp">19°</div>
+          </div>
+        </div>
+      </section>
+        
+        <section>
+        <div class="cityInput">
+          <form id="search-city">
+            <input
+              class="form-control form-control-sm"
+              id="city-input"
+              type="text"
+              placeholder="Enter city"
+              autocomplete="off";
+            />
+            <div class = "buttons">
+            <button type="submit" class="btn1 btn-light">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+             <button type ="submit" class="btn2 btn-light">
+          <i class="fa-solid fa-location-dot"></i>
+          </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    <script src="bootstrap/bootstrap.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+
+
+  </body>
+</html>
