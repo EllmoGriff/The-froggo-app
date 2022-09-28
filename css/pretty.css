@@ -119,7 +119,8 @@ h2,
 .mood,
 .f,
 .c,
-.geo {
+.geo,
+.sourceCode {
   font-family: "Source Code Pro", monospace;
 }
 h1,
@@ -195,4 +196,19 @@ input[type="text"] {
 }
 .buttons {
   text-align: center;
+}
+a.git:link,
+a.git:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a.git:hover {
+  color: #e8cfc9;
+}
+
+.sourceCode {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 13px;
 }

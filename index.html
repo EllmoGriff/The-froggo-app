@@ -33,21 +33,21 @@
   <body>
     <div class="container-sm">
       <header>
-        <h1>ENTER CITY</h1>
+        <h1>Where to?</h1>
         <h2>
           <span class="date" id="current-date">Thursday 1st Sep</span>
           <span class="time" id="current-time">20:08PM</span>
         </h2>
       </header>
-      
+
       <section>
         <div class="moon">
           <i class="fa-solid fa-cloud-moon"></i>
         </div>
         <div class="temp" id="current-temp">0°</div>
         <div class="c">
-          <a class = "tempC" href="#" >°C</a
-          ><span class="f"><a class = "tempF" href="#" >/°F</a></span>
+          <a class="tempC" href="#">°C</a
+          ><span class="f"><a class="tempF" href="#">/°F</a></span>
         </div>
         <div class="mood"></div>
         <div class="container text-center deets">
@@ -108,8 +108,8 @@
           </div>
         </div>
       </section>
-        
-        <section>
+
+      <section>
         <div class="cityInput">
           <form id="search-city">
             <input
@@ -117,19 +117,32 @@
               id="city-input"
               type="text"
               placeholder="Enter city"
-              autocomplete="off";
+              autocomplete="off"
+              ;
             />
-            <div class = "buttons">
-            <button type="submit" class="btn1 btn-light">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-             <button type ="submit" class="btn2 btn-light">
-          <i class="fa-solid fa-location-dot"></i>
-          </button>
+            <div class="buttons">
+              <button type="submit" class="btn1 btn-light">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <button type="submit" class="btn2 btn-light">
+                <i class="fa-solid fa-location-dot"></i>
+              </button>
             </div>
           </form>
         </div>
       </section>
+    </div>
+    <div class="sourceCode">
+      <p>
+        <a
+          href="https://github.com/EllmoGriff/The-froggo-app.git"
+          target="_blank"
+          class="git"
+          >Open-source code</a
+        >
+        by Elle Griffiths
+      </p>
+    </div>
 
     <script src="bootstrap/bootstrap.js"></script>
     <script
@@ -137,7 +150,5 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
-
-
   </body>
 </html>
