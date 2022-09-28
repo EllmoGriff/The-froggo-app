@@ -76,7 +76,7 @@ function showTemp(response) {
   // console.log(response.data);
   document.querySelector("#search-city").reset();
   let temp = Math.round(response.data.main.temp);
-  document.querySelector("#current-temp").innerHTML = `${temp}`;
+  document.querySelector("#current-temp").innerHTML = `${temp}°`;
   let humid = response.data.main.humidity;
   document.querySelector("#percent").innerHTML = `${humid}%`;
   let wind = Math.round(response.data.wind.speed);
@@ -92,10 +92,10 @@ function cityInput(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
   let displayCityTemp = document.querySelector("#current-temp");
-  displayCityTemp.innerHTML = `${searchInput.value}`;
+  displayCityTemp.innerHTML = `${searchInput.value}°`;
   let h1 = document.querySelector("h1");
   if (searchInput.value) {
-    displayCityTemp.innerHTML = `${searchInput.value}`;
+    displayCityTemp.innerHTML = `${searchInput.value}°`;
   } else {
     return (h1.innerHTML = `City?`), (displayCityTemp.innerHTML = `0° `);
   }
