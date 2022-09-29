@@ -87,17 +87,27 @@ function showTemp(response) {
   document.querySelector(".mood").innerHTML = `${mood}`;
 }
 
+function originalState() {
+  document.querySelector("#search-city").reset();
+  document.querySelector("#current-temp").innerHTML = `0°`;
+  document.querySelector("#percent").innerHTML = `%`;
+  document.querySelector("#mph").innerHTML = `mph`;
+  document.querySelector("#degree").innerHTML = `°`;
+  document.querySelector(".mood").innerHTML = ` `;
+  document.querySelector("h1").innerHTML = `Where to?`;
+}
+
 function cityInput(event) {
   // console.log("ran function cityInput");
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
   let displayCityTemp = document.querySelector("#current-temp");
   displayCityTemp.innerHTML = `${searchInput.value}°`;
-  let h1 = document.querySelector("h1");
   if (searchInput.value) {
     displayCityTemp.innerHTML = `${searchInput.value}°`;
   } else {
-    return (h1.innerHTML = `City?`), (displayCityTemp.innerHTML = `0° `);
+    originalState();
+    return;
   }
   searchApi(searchInput.value);
 }
