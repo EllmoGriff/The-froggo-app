@@ -85,6 +85,12 @@ function showTemp(response) {
   document.querySelector("#degree").innerHTML = `${feelsLike}°`;
   let mood = response.data.weather[0].description;
   document.querySelector(".mood").innerHTML = `${mood}`;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 
 function originalState() {
