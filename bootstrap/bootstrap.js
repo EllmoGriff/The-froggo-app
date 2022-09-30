@@ -108,6 +108,12 @@ function originalState() {
   document.querySelector("#degree").innerHTML = `°`;
   document.querySelector(".mood").innerHTML = ` `;
   document.querySelector("h1").innerHTML = `Where to?`;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png?20091205084734"
+    );
 }
 
 function cityInput(event) {
