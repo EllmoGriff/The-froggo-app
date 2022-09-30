@@ -57,26 +57,30 @@ let time = new Date();
 currentTime(time);
 
 function degreeC() {
-  let C = document.querySelector("#current-temp");
-  C.innerHTML = `18°`;
+  let C = Math.round(celsiusTemp);
+  document.querySelector("#current-temp").innerHTML = `${C}°`;
 }
 let tempC = document.querySelector(".tempC");
 tempC.addEventListener("click", degreeC);
 
 function degreeF() {
-  let temperature = 18;
-  let farenTemp = Math.round((temperature * 9) / 5 + 32);
+  let fahrenTemp = Math.round((celsiusTemp * 9) / 5 + 32);
   let F = document.querySelector("#current-temp");
-  F.innerHTML = `${farenTemp}°`;
+  F.innerHTML = `${fahrenTemp}°`;
+  if (celsiusTemp === null) {
+    F.innerHTML = `0°`;
+  }
 }
 let tempF = document.querySelector(".tempF");
 tempF.addEventListener("click", degreeF);
 
+let celsiusTemp = null;
+
 function showTemp(response) {
-  // console.log(response.data);
+  console.log(response.data);
   document.querySelector("#search-city").reset();
-  let cityName = document.querySelector("#city");
-  cityName.innerHTML = response.data.name;
+  let cityName = response.data.name;
+  document.querySelector("#city").innerHTML = `${cityName}`;
   let temp = Math.round(response.data.main.temp);
   document.querySelector("#current-temp").innerHTML = `${temp}°`;
   let humid = response.data.main.humidity;
@@ -87,6 +91,7 @@ function showTemp(response) {
   document.querySelector("#degree").innerHTML = `${feelsLike}°`;
   let mood = response.data.weather[0].description;
   document.querySelector(".mood").innerHTML = `${mood}`;
+  celsiusTemp = response.data.main.temp;
   document
     .querySelector("#icon")
     .setAttribute(
