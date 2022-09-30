@@ -75,6 +75,8 @@ tempF.addEventListener("click", degreeF);
 function showTemp(response) {
   // console.log(response.data);
   document.querySelector("#search-city").reset();
+  let cityName = document.querySelector("#city");
+  cityName.innerHTML = response.data.name;
   let temp = Math.round(response.data.main.temp);
   document.querySelector("#current-temp").innerHTML = `${temp}°`;
   let humid = response.data.main.humidity;
@@ -141,7 +143,7 @@ function findLocation(position) {
 
 function yourCity(event) {
   event.preventDefault();
-  document.querySelector("h1").innerHTML = "Your City";
+  // document.querySelector("h1").innerHTML = "Your City";
   navigator.geolocation.getCurrentPosition(findLocation);
 }
 
