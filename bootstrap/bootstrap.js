@@ -59,7 +59,7 @@ currentTime(time);
 function degreeC() {
   let C = celsiusTemp;
   document.querySelector("#current-temp").innerHTML = `${C}°`;
-  document.querySelector("#degree").innerHTML = `${C}°`;
+  document.querySelector("#degree").innerHTML = `${feelsLikeFahren}°`;
 }
 let tempC = document.querySelector(".tempC");
 tempC.addEventListener("click", degreeC);
