@@ -57,24 +57,30 @@ let time = new Date();
 currentTime(time);
 
 function degreeC() {
-  let C = Math.round(celsiusTemp);
+  let C = celsiusTemp;
   document.querySelector("#current-temp").innerHTML = `${C}°`;
+  document.querySelector("#degree").innerHTML = `${C}°`;
 }
 let tempC = document.querySelector(".tempC");
 tempC.addEventListener("click", degreeC);
 
 function degreeF() {
+  console.log(degreeF);
   let fahrenTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+  let feelLikeF = Math.round((feelsLikeFahren * 9) / 5 + 32);
   let F = document.querySelector("#current-temp");
+  document.querySelector("#degree").innerHTML = `${feelLikeF}°`;
   F.innerHTML = `${fahrenTemp}°`;
   if (celsiusTemp === null) {
     F.innerHTML = `0°`;
   }
 }
+
 let tempF = document.querySelector(".tempF");
 tempF.addEventListener("click", degreeF);
 
 let celsiusTemp = null;
+let feelsLikeFahren = null;
 
 function showTemp(response) {
   console.log(response.data);
@@ -91,7 +97,8 @@ function showTemp(response) {
   document.querySelector("#degree").innerHTML = `${feelsLike}°`;
   let mood = response.data.weather[0].description;
   document.querySelector(".mood").innerHTML = `${mood}`;
-  celsiusTemp = response.data.main.temp;
+  celsiusTemp = Math.round(response.data.main.temp);
+  feelsLikeFahren = Math.round(response.data.main.feels_like);
   document
     .querySelector("#icon")
     .setAttribute(
@@ -125,8 +132,7 @@ function cityInput(event) {
   if (searchInput.value) {
     displayCityTemp.innerHTML = `${searchInput.value}°`;
   } else {
-    originalState();
-    return;
+    return originalState();
   }
   searchApi(searchInput.value);
 }
