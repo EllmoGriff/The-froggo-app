@@ -58,20 +58,27 @@ currentTime(time);
 
 function degreeC() {
   let C = celsiusTemp;
+  let temp = document.querySelector("#current-temp");
+  let feelC = document.querySelector("#degree");
   document.querySelector("#current-temp").innerHTML = `${C}°`;
   document.querySelector("#degree").innerHTML = `${feelsLikeFahren}°`;
+  if (C === null) {
+    temp.innerHTML = `0°`;
+    feelC.innerHTML = `°`;
+  }
 }
 let tempC = document.querySelector(".tempC");
 tempC.addEventListener("click", degreeC);
 
 function degreeF() {
-  console.log(degreeF);
   let fahrenTemp = Math.round((celsiusTemp * 9) / 5 + 32);
   let feelLikeF = Math.round((feelsLikeFahren * 9) / 5 + 32);
   let F = document.querySelector("#current-temp");
-  document.querySelector("#degree").innerHTML = `${feelLikeF}°`;
+  let feelF = document.querySelector("#degree");
+  feelF.innerHTML = `${feelLikeF}°`;
   F.innerHTML = `${fahrenTemp}°`;
-  if (celsiusTemp === null) {
+  if (feelsLikeFahren === null) {
+    feelF.innerHTML = `°`;
     F.innerHTML = `0°`;
   }
 }
@@ -124,7 +131,6 @@ function originalState() {
 }
 
 function cityInput(event) {
-  // console.log("ran function cityInput");
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
   let displayCityTemp = document.querySelector("#current-temp");
@@ -138,7 +144,6 @@ function cityInput(event) {
 }
 
 function searchApi(city) {
-  // console.log("ran function searchApi");
   let unit = "metric";
   let apiKey = "0916f8b81b55a49e9ed662fd3289212a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=${unit}`;
@@ -154,13 +159,11 @@ function findLocation(position) {
   let unit = "metric";
   let apiKey = "0916f8b81b55a49e9ed662fd3289212a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${unit}&appid=${apiKey}`;
-  // console.log(apiUrl);
   axios.get(apiUrl).then(showTemp);
 }
 
 function yourCity(event) {
   event.preventDefault();
-  // document.querySelector("h1").innerHTML = "Your City";
   navigator.geolocation.getCurrentPosition(findLocation);
 }
 
