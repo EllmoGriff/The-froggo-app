@@ -46,6 +46,11 @@ h2 {
   margin: auto;
   width: 90px;
 }
+#iconSmall {
+  display: block;
+  margin: auto;
+  width: 20px;
+}
 .temp {
   font-size: 70px;
   text-align: center;

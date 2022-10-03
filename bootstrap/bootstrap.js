@@ -56,6 +56,33 @@ function currentTime(date) {
 let time = new Date();
 currentTime(time);
 
+function displayForecast() {
+  let forecast = document.querySelector(".forecast");
+  let forecastHTML = `<div class="container text-center">`;
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="row">
+            <div class="col-sm-4 day">${day}</div>
+            <div class="col-sm-4 icon">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png?20091205084734"
+                alt=""
+                id="iconSmall"
+                width="10px"
+              />
+            </div>
+            <div class="col-sm-4 sTemp">23°</div>
+            </div>
+          `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
+}
+displayForecast();
+
 function degreeC() {
   let C = celsiusTemp;
   let temp = document.querySelector("#current-temp");
@@ -67,8 +94,6 @@ function degreeC() {
     feelC.innerHTML = `°`;
   }
 }
-let tempC = document.querySelector(".tempC");
-tempC.addEventListener("click", degreeC);
 
 function degreeF() {
   let fahrenTemp = Math.round((celsiusTemp * 9) / 5 + 32);
@@ -83,6 +108,8 @@ function degreeF() {
   }
 }
 
+let tempC = document.querySelector(".tempC");
+tempC.addEventListener("click", degreeC);
 let tempF = document.querySelector(".tempF");
 tempF.addEventListener("click", degreeF);
 
@@ -153,7 +180,7 @@ function searchApi(city) {
 let searchedCity = document.querySelector("#search-city");
 searchedCity.addEventListener("submit", cityInput);
 
-//////////////
+////////////// geo location
 
 function findLocation(position) {
   let unit = "metric";
@@ -169,3 +196,5 @@ function yourCity(event) {
 
 let button = document.querySelector(".btn2");
 button.addEventListener("click", yourCity);
+
+/////////////////
