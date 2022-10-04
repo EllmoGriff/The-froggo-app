@@ -56,28 +56,40 @@ function currentTime(date) {
 let time = new Date();
 currentTime(time);
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector(".forecast");
   let forecastHTML = `<div class="container text-center">`;
-  forecast.forEach(function (forecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="row">
-            <div class="col-sm-4 day">${forecastDay.dt}}</div>
+            <div class="col-sm-4 day">${formatDay(forecastDay.dt)}</div>
             <div class="col-sm-4 icon">
               <img
-                src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+                src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
                 alt=""
                 id="iconSmall"
-                width="10px"
               />
             </div>
-            <div class="col-sm-4 sTemp">Math.Rough${forecastDay.temp.max}</div>
+            <div class="col-sm-4 sTemp">${Math.round(
+              forecastDay.temp.max
+            )}°</div>
             </div>
           `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -85,7 +97,7 @@ function displayForecast(response) {
 
 function forecastAPI(coordinates) {
   let unit = "metric";
-  let apiKey = "fb17032b6c9158083b18c64aad932954";
+  let apiKey = "6d68aadfacdd4f5163bc273049a0cf2d";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayForecast);
   console.log(apiUrl);
