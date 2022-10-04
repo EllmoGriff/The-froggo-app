@@ -56,32 +56,40 @@ function currentTime(date) {
 let time = new Date();
 currentTime(time);
 
-function displayForecast() {
-  let forecast = document.querySelector(".forecast");
+function displayForecast(response) {
+  console.log(response);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector(".forecast");
   let forecastHTML = `<div class="container text-center">`;
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `
             <div class="row">
-            <div class="col-sm-4 day">${day}</div>
+            <div class="col-sm-4 day">${forecastDay.dt}}</div>
             <div class="col-sm-4 icon">
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png?20091205084734"
+                src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
                 alt=""
                 id="iconSmall"
                 width="10px"
               />
             </div>
-            <div class="col-sm-4 sTemp">23°</div>
+            <div class="col-sm-4 sTemp">Math.Rough${forecastDay.temp.max}</div>
             </div>
           `;
   });
   forecastHTML = forecastHTML + `</div>`;
-  forecast.innerHTML = forecastHTML;
+  forecastElement.innerHTML = forecastHTML;
 }
-displayForecast();
+
+function forecastAPI(coordinates) {
+  let unit = "metric";
+  let apiKey = "fb17032b6c9158083b18c64aad932954";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
 
 function degreeC() {
   let C = celsiusTemp;
@@ -117,7 +125,6 @@ let celsiusTemp = null;
 let feelsLikeFahren = null;
 
 function showTemp(response) {
-  console.log(response.data);
   document.querySelector("#search-city").reset();
   let cityName = response.data.name;
   document.querySelector("#city").innerHTML = `${cityName}`;
@@ -139,6 +146,7 @@ function showTemp(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+  forecastAPI(response.data.coord);
 }
 
 function originalState() {
