@@ -69,7 +69,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector(".forecast");
   let forecastHTML = `<div class="container text-center">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index > 0 && index < 7) {
       forecastHTML =
         forecastHTML +
         `
@@ -148,10 +148,15 @@ function showTemp(response) {
   document.querySelector("#mph").innerHTML = `${wind}mph`;
   let feelsLike = Math.round(response.data.main.feels_like);
   document.querySelector("#degree").innerHTML = `${feelsLike}°`;
-  let mood = response.data.weather[0].description;
-  document.querySelector(".mood").innerHTML = `${mood}`;
   celsiusTemp = Math.round(response.data.main.temp);
   feelsLikeFahren = Math.round(response.data.main.feels_like);
+  if (response.data.weather.length === 0) {
+    document.querySelector(".mood").innerHTML = "";
+    return;
+  }
+
+  let mood = response.data.weather[0].description;
+  document.querySelector(".mood").innerHTML = `${mood}`;
   document
     .querySelector("#icon")
     .setAttribute(
@@ -162,13 +167,21 @@ function showTemp(response) {
 }
 
 function originalState() {
-  document.querySelector("#search-city").reset();
-  document.querySelector("#current-temp").innerHTML = `0°`;
-  document.querySelector("#percent").innerHTML = `%`;
-  document.querySelector("#mph").innerHTML = `mph`;
-  document.querySelector("#degree").innerHTML = `°`;
-  document.querySelector(".mood").innerHTML = ` `;
-  document.querySelector("h1").innerHTML = `Where to?`;
+  document.querySelector(".forecast").innerHTML = "";
+  showTemp({
+    data: {
+      name: "Where to?",
+      main: {
+        temp: 0,
+        humidity: "",
+        feels_like: 0,
+      },
+      wind: {
+        speed: 0,
+      },
+      weather: [],
+    },
+  });
   document
     .querySelector("#icon")
     .setAttribute(
