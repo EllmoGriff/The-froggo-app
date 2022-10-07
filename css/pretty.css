@@ -22,12 +22,22 @@ h2 {
 }
 .container-sm {
   background-image: linear-gradient(#f7ded3, #4f3d65);
-  /* background-image: linear-gradient(#d5eff4, #5a6965); rain */
-  /* background-image: linear-gradient(#fbde94, #e48f8f, #5b4872); sunny*/
+  /* background-image: linear-gradient(#d5eff4, #5a6965); */
+  /* background-image: linear-gradient(#f7c3c3, #eeb37b); */
   margin-top: 30px;
   max-width: 450px;
   padding: 30px;
   border-radius: 90px;
+}
+
+.night-background {
+  background-image: linear-gradient(#f7ded3, #4f3d65);
+}
+.sun-background {
+  background-image: linear-gradient(#f7c3c3, #eeb37b);
+}
+.rain-background {
+  background-image: linear-gradient(#d5eff4, #5a6965);
 }
 .date {
   position: relative;
@@ -37,10 +47,6 @@ h2 {
   position: relative;
   right: 2px;
 }
-/* .moon {
-  text-align: center;
-  font-size: 50px;
-} */
 #icon {
   display: block;
   margin: auto;
@@ -163,12 +169,12 @@ h1,
 }
 
 .form-control:focus {
-  border-color: #f7ded3;
-  box-shadow: 1px 0px 1px #f7ded3;
+  border-color: black;
+  box-shadow: 0px 0px 0px #f7ded3;
 }
 .form-control {
   margin-top: 10px;
-  border-color: #443456;
+  border-color: #f7ded3;
   border-width: 2px;
   border-radius: 20px;
   width: 200px;
@@ -196,7 +202,8 @@ input[type="text"] {
 
 .btn1:hover,
 .btn2:hover {
-  background-color: #4f3d65;
+  /* background-color: #4f3d65; */
+  background-color: black;
   color: #fefbf3;
   border-color: #fefbf3;
 }

@@ -1,12 +1,3 @@
-function form(event) {
-  event.preventDefault();
-  let citySearch = document.querySelector("#city-input");
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = `${citySearch.value}`;
-}
-let citySearch = document.querySelector("#search-city");
-citySearch.addEventListener("submit", form);
-
 function currentDate(date) {
   let days = [
     "Sunday",
@@ -60,7 +51,6 @@ function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
   return days[day];
 }
 
@@ -100,7 +90,6 @@ function forecastAPI(coordinates) {
   let apiKey = "6d68aadfacdd4f5163bc273049a0cf2d";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayForecast);
-  console.log(apiUrl);
 }
 
 function degreeC() {
@@ -137,6 +126,7 @@ let celsiusTemp = null;
 let feelsLikeFahren = null;
 
 function showTemp(response) {
+  console.log(response);
   document.querySelector("#search-city").reset();
   let cityName = response.data.name;
   document.querySelector("#city").innerHTML = `${cityName}`;
@@ -154,7 +144,6 @@ function showTemp(response) {
     document.querySelector(".mood").innerHTML = "";
     return;
   }
-
   let mood = response.data.weather[0].description;
   document.querySelector(".mood").innerHTML = `${mood}`;
   document
@@ -164,6 +153,17 @@ function showTemp(response) {
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
   forecastAPI(response.data.coord);
+  changeBackground(response.data.weather[0].description);
+}
+
+function changeBackground(mood) {
+  let background = document.querySelector("#background");
+  background.className = "container-sm";
+  if (mood == "clear sky" || mood == "few clouds") {
+    background.classList.add("sun-background");
+  } else {
+    background.classList.add("rain-background");
+  }
 }
 
 function originalState() {
@@ -193,21 +193,18 @@ function originalState() {
 function cityInput(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
-  let displayCityTemp = document.querySelector("#current-temp");
-  displayCityTemp.innerHTML = `${searchInput.value}°`;
-  if (searchInput.value) {
-    displayCityTemp.innerHTML = `${searchInput.value}°`;
+  if (searchInput.value == "") {
+    originalState();
   } else {
-    return originalState();
+    searchApi(searchInput.value);
   }
-  searchApi(searchInput.value);
 }
 
 function searchApi(city) {
   let unit = "metric";
   let apiKey = "0916f8b81b55a49e9ed662fd3289212a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=${unit}`;
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(showTemp).catch(originalState);
 }
 
 let searchedCity = document.querySelector("#search-city");
