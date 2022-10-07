@@ -22,8 +22,7 @@ h2 {
 }
 .container-sm {
   background-image: linear-gradient(#f7ded3, #4f3d65);
-  /* background-image: linear-gradient(#d5eff4, #5a6965); */
-  /* background-image: linear-gradient(#f7c3c3, #eeb37b); */
+  text-align: center;
   margin-top: 30px;
   max-width: 450px;
   padding: 30px;
